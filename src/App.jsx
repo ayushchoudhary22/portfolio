@@ -362,6 +362,63 @@ function InteractiveBg() {
   return <canvas ref={canvasRef} className="interactive-bg-canvas" />;
 }
 
+const typewriterRoles = [
+  'Full-Stack Developer',
+  'Security Researcher',
+  'IoT Engineer',
+  'Big Data Architect'
+];
+
+function TypewriterText() {
+  const [text, setText] = useState('');
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentRole = typewriterRoles[roleIndex];
+    let timeout;
+
+    if (!isDeleting && text === currentRole) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && text === '') {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % typewriterRoles.length);
+    } else {
+      timeout = setTimeout(() => {
+        setText(currentRole.substring(0, text.length + (isDeleting ? -1 : 1)));
+      }, isDeleting ? 40 : 80);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, roleIndex]);
+
+  return (
+    <span className="typewriter-wrapper">
+      {text}
+      <span className="typewriter-cursor" />
+    </span>
+  );
+}
+
+const skillBubblesData = [
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+  { name: 'C/C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'TensorFlow', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
+  { name: 'Pandas', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg' },
+  { name: 'NumPy', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+];
+
 function App() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -390,6 +447,7 @@ function App() {
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -408,12 +466,43 @@ function App() {
             <motion.h1 variants={fadeIn} style={{ fontSize: '4.2rem', lineHeight: '1.1', marginBottom: '1.2rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
               Ayush Choudhary
             </motion.h1>
-            <motion.h3 variants={fadeIn} style={{ fontSize: '1.8rem', color: 'var(--text-muted)', fontWeight: 500, marginBottom: '2rem' }}>
-              Full-Stack Developer & Security Researcher
+            <motion.h3 variants={fadeIn} style={{ fontSize: '1.8rem', color: 'var(--text-muted)', fontWeight: 500, marginBottom: '1.5rem' }}>
+              <TypewriterText />
             </motion.h3>
-            <motion.p variants={fadeIn} style={{ fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '2.5rem', maxWidth: '620px', lineHeight: '1.7' }}>
+
+            <motion.div variants={fadeIn} className="role-badges">
+              {['MERN Stack', 'Cybersecurity', 'Big Data', 'IoT', 'Python'].map((role, i) => (
+                <span key={i} className="role-badge">{role}</span>
+              ))}
+            </motion.div>
+
+            <motion.p variants={fadeIn} style={{ fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '2rem', maxWidth: '620px', lineHeight: '1.7' }}>
               I study at <strong style={{ color: 'white' }}>JK Lakshmipat University</strong>. I build robust full-stack applications with the MERN stack and write secure, automated code. From AI-powered security crawlers to Kafka-based big data pipelines, I enjoy architecting reliable systems.
             </motion.p>
+
+            <motion.div variants={fadeIn} className="info-cards-row">
+              <div className="info-card">
+                <span className="info-card-icon">📍</span>
+                <div>
+                  <div className="info-card-label">Location</div>
+                  <div className="info-card-value">Jaipur, Rajasthan</div>
+                </div>
+              </div>
+              <div className="info-card">
+                <span className="info-card-icon">💼</span>
+                <div>
+                  <div className="info-card-label">Expertise</div>
+                  <div className="info-card-value">Full-Stack & Security</div>
+                </div>
+              </div>
+              <div className="info-card">
+                <span className="info-card-icon">📧</span>
+                <div>
+                  <div className="info-card-label">Contact</div>
+                  <div className="info-card-value">ayushchoudhary18481@gmail.com</div>
+                </div>
+              </div>
+            </motion.div>
             
             <motion.div variants={fadeIn} style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}>
               <a href="/Ayush_Choudhary_Resume.pdf" download className="btn btn-primary">
@@ -465,6 +554,24 @@ function App() {
         >
           Technical Competence
         </motion.h2>
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+          className="skill-bubbles-section"
+        >
+          <div className="skill-bubbles">
+            {skillBubblesData.map((skill, i) => (
+              <motion.div
+                key={i}
+                variants={fadeIn}
+                className="skill-bubble"
+              >
+                <img src={skill.icon} alt={skill.name} />
+                <span>{skill.name}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         <div className="skills-grid">
           {[
             { 
@@ -739,22 +846,53 @@ function App() {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="section-container">
+        <motion.h2 
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+          className="section-title"
+        >
+          Get In Touch
+        </motion.h2>
+        <motion.p
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+          style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: '1.7' }}
+        >
+          Open for software development internships, cybersecurity audits, and academic coding projects. Let's build something great together.
+        </motion.p>
+        <motion.div
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+          className="contact-grid"
+        >
+          <motion.div variants={fadeIn} className="contact-card">
+            <div className="contact-card-icon">
+              <Mail size={24} color="var(--primary)" />
+            </div>
+            <span className="contact-card-label">Email</span>
+            <a href="mailto:ayushchoudhary18481@gmail.com">ayushchoudhary18481@gmail.com</a>
+          </motion.div>
+          <motion.div variants={fadeIn} className="contact-card">
+            <div className="contact-card-icon">
+              <FaGithub size={24} color="var(--primary)" />
+            </div>
+            <span className="contact-card-label">GitHub</span>
+            <a href="https://github.com/ayushchoudhary22" target="_blank" rel="noopener noreferrer">github.com/ayushchoudhary22</a>
+          </motion.div>
+          <motion.div variants={fadeIn} className="contact-card">
+            <div className="contact-card-icon">
+              <FaLinkedin size={24} color="var(--primary)" />
+            </div>
+            <span className="contact-card-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/ayush-choudhary-767080285/" target="_blank" rel="noopener noreferrer">linkedin.com/in/ayush-choudhary</a>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer style={{ padding: '4rem 2rem', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', background: 'rgba(5, 5, 8, 0.4)' }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'Outfit', fontSize: '2.2rem', fontWeight: 800, marginBottom: '0.8rem', background: 'linear-gradient(135deg, white, var(--primary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            Let's Collaborate.
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', marginBottom: '2rem', lineHeight: '1.6' }}>
-            Open for software development internships, cybersecurity audits, and academic coding projects.
-          </p>
-          <a href="mailto:ayushchoudhary18481@gmail.com" className="btn btn-secondary" style={{ marginBottom: '2.5rem' }}>
-            <Mail size={18} /> Send Message
-          </a>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-            © {new Date().getFullYear()} Ayush Choudhary. Built with React, CSS variables & Framer Motion.
-          </p>
-        </div>
+      <footer style={{ padding: '3rem 2rem', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', background: 'rgba(5, 5, 8, 0.4)' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+          © {new Date().getFullYear()} Ayush Choudhary. Built with React, CSS variables & Framer Motion.
+        </p>
       </footer>
     </div>
   );

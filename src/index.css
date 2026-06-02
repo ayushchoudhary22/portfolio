@@ -710,3 +710,259 @@ nav {
   pointer-events: none;
   opacity: 0.65;
 }
+
+/* ==========================================
+   Typewriter Cursor
+   ========================================== */
+.typewriter-wrapper {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.8rem;
+  background: var(--primary);
+  margin-left: 4px;
+  border-radius: 2px;
+  animation: blink-cursor 0.75s step-end infinite;
+  box-shadow: 0 0 8px var(--primary);
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ==========================================
+   Role Badges
+   ========================================== */
+.role-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.role-badge {
+  padding: 0.45rem 1rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  color: var(--primary);
+  background: rgba(69, 243, 255, 0.06);
+  border: 1px solid rgba(69, 243, 255, 0.15);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.role-badge:hover {
+  background: rgba(69, 243, 255, 0.12);
+  border-color: rgba(69, 243, 255, 0.35);
+  box-shadow: 0 0 14px rgba(69, 243, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   Quick Info Cards
+   ========================================== */
+.info-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  min-width: 180px;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: rgba(69, 243, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.info-card-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.15rem;
+}
+
+.info-card-value {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* ==========================================
+   Skill Bubbles Grid
+   ========================================== */
+.skill-bubbles-section {
+  margin-bottom: 3.5rem;
+}
+
+.skill-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.skill-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.2rem 1rem;
+  width: 100px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.skill-bubble:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: rgba(69, 243, 255, 0.3);
+  background: rgba(69, 243, 255, 0.06);
+  box-shadow: 0 0 25px rgba(69, 243, 255, 0.15), 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skill-bubble img {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(30%) brightness(0.9);
+  transition: all 0.4s ease;
+}
+
+.skill-bubble:hover img {
+  filter: grayscale(0%) brightness(1.1) drop-shadow(0 0 8px rgba(69, 243, 255, 0.5));
+}
+
+.skill-bubble span {
+  font-size: 0.72rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.skill-bubble:hover span {
+  color: var(--primary);
+}
+
+/* ==========================================
+   Contact Section
+   ========================================== */
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.contact-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 260px;
+  max-width: 320px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--glow-subtle);
+}
+
+.contact-card:hover {
+  border-color: rgba(69, 243, 255, 0.25);
+  background: var(--bg-surface-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(69, 243, 255, 0.1);
+}
+
+.contact-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(69, 243, 255, 0.06);
+  border: 1px solid rgba(69, 243, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-card-icon {
+  background: rgba(69, 243, 255, 0.12);
+  box-shadow: 0 0 16px rgba(69, 243, 255, 0.2);
+}
+
+.contact-card-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.contact-card a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.3s ease;
+  word-break: break-all;
+}
+
+.contact-card:hover a {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .role-badges {
+    gap: 0.5rem;
+  }
+  .info-cards-row {
+    flex-direction: column;
+  }
+  .skill-bubble {
+    width: 80px;
+    padding: 0.9rem 0.6rem;
+  }
+  .skill-bubble img {
+    width: 32px;
+    height: 32px;
+  }
+  .contact-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
