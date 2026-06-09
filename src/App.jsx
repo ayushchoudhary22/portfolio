@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Mail, Download, ExternalLink, Code2, Shield, Database, 
-  Terminal, Award, Server, Cpu, Eye, X, BookOpen, Layers, 
+import {
+  Mail, Download, ExternalLink, Code2, Shield, Database,
+  Terminal, Award, Server, Cpu, Eye, X, BookOpen, Layers,
   Globe, Filter, MapPin, Briefcase, GraduationCap
 } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -235,7 +235,7 @@ function InteractiveBg() {
         this.vx = (Math.random() - 0.5) * 0.4;
         this.vy = (Math.random() - 0.5) * 0.4;
         this.radius = Math.random() * 2 + 1;
-        
+
         // Match theme colors: primary (#45f3ff), secondary (#ff2a70), accent (#bd93f9)
         const rand = Math.random();
         if (rand < 0.5) {
@@ -323,7 +323,7 @@ function InteractiveBg() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particles.forEach(p => {
         p.update();
         p.draw();
@@ -334,7 +334,7 @@ function InteractiveBg() {
     };
 
     window.addEventListener('resize', resizeCanvas);
-    
+
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -364,9 +364,8 @@ function InteractiveBg() {
 
 const typewriterRoles = [
   'Full-Stack Developer',
-  'Security Researcher',
-  'IoT Engineer',
-  'Big Data Architect'
+  'Security Engineer',
+  'Data Science Engineer'
 ];
 
 function TypewriterText() {
@@ -454,7 +453,7 @@ function App() {
       {/* Hero Section */}
       <section id="about" className="section-container" style={{ minHeight: '100vh', paddingTop: '8.5rem', display: 'flex', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '3rem', width: '100%' }}>
-          <motion.div 
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -503,7 +502,7 @@ function App() {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div variants={fadeIn} style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}>
               <a href="/Ayush_Choudhary_Resume.pdf" download className="btn btn-primary">
                 <Download size={18} /> Get Resume
@@ -526,7 +525,7 @@ function App() {
             </motion.div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
@@ -535,10 +534,10 @@ function App() {
             <div style={{ position: 'relative', width: '330px', height: '330px' }}>
               <div className="avatar-glow"></div>
               <div className="glass-panel" style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <img 
-                  src="/profile.jpg" 
-                  alt="Ayush Avatar" 
-                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} 
+                <img
+                  src="/profile.jpg"
+                  alt="Ayush Avatar"
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
                 />
               </div>
             </div>
@@ -548,13 +547,13 @@ function App() {
 
       {/* Skills Section */}
       <section id="skills" className="section-container">
-        <motion.h2 
+        <motion.h2
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="section-title"
         >
           Technical Competence
         </motion.h2>
-        <motion.div 
+        <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
           className="skill-bubbles-section"
         >
@@ -574,28 +573,28 @@ function App() {
 
         <div className="skills-grid">
           {[
-            { 
-              title: 'Web Technologies', 
-              icon: <Code2 size={24} color="var(--primary)" />, 
-              skills: ['React.js & Tailwind CSS', 'Node.js & Express.js', 'MongoDB (MERN)', 'JWT & Bcrypt Auth', 'Razorpay & Azure AD Integration'] 
+            {
+              title: 'Web Technologies',
+              icon: <Code2 size={24} color="var(--primary)" />,
+              skills: ['React.js & Tailwind CSS', 'Node.js & Express.js', 'MongoDB (MERN)', 'JWT & Bcrypt Auth', 'Razorpay & Azure AD Integration']
             },
-            { 
-              title: 'Programming Languages', 
-              icon: <Terminal size={24} color="var(--secondary)" />, 
-              skills: ['Python (Scripting & OOP)', 'C / C++ Development', 'SQL (MySQL & Postgres)', 'Data Structures & Algorithms'] 
+            {
+              title: 'Programming Languages',
+              icon: <Terminal size={24} color="var(--secondary)" />,
+              skills: ['Python (Scripting & OOP)', 'C / C++ Development', 'SQL (MySQL & Postgres)', 'Data Structures & Algorithms']
             },
-            { 
-              title: 'Cybersecurity & Tools', 
-              icon: <Shield size={24} color="var(--primary)" />, 
-              skills: ['Linux (Ubuntu, Kali)', 'Vulnerability Testing', 'Wireshark & Nmap', 'Git & GitHub Version Control', 'Google Gemini API Integration'] 
+            {
+              title: 'Cybersecurity & Tools',
+              icon: <Shield size={24} color="var(--primary)" />,
+              skills: ['Linux (Ubuntu, Kali)', 'Vulnerability Testing', 'Wireshark & Nmap', 'Git & GitHub Version Control', 'Google Gemini API Integration']
             },
-            { 
-              title: 'Data & Machine Learning', 
-              icon: <Database size={24} color="var(--secondary)" />, 
-              skills: ['Apache Spark / PySpark', 'Apache Kafka Streaming', 'MapReduce (mrjob)', 'Scikit-Learn (ML Models)', 'Pandas, NumPy & Seaborn'] 
+            {
+              title: 'Data & Machine Learning',
+              icon: <Database size={24} color="var(--secondary)" />,
+              skills: ['Apache Spark / PySpark', 'Apache Kafka Streaming', 'MapReduce (mrjob)', 'Scikit-Learn (ML Models)', 'Pandas, NumPy & Seaborn']
             }
           ].map((cat, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { delay: idx * 0.08 } } }}
@@ -620,14 +619,14 @@ function App() {
 
       {/* Experience Section */}
       <section id="experience" className="section-container">
-        <motion.h2 
+        <motion.h2
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="section-title"
         >
           Education & Experience
         </motion.h2>
         <div className="timeline">
-          <motion.div 
+          <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
             className="timeline-item"
           >
@@ -643,7 +642,7 @@ function App() {
             </ul>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
             className="timeline-item"
           >
@@ -661,7 +660,7 @@ function App() {
 
       {/* Projects Section */}
       <section id="projects" className="section-container">
-        <motion.h2 
+        <motion.h2
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="section-title"
         >
@@ -671,8 +670,8 @@ function App() {
         {/* Filter Controls */}
         <div className="filter-container">
           {projectCategories.map((cat, i) => (
-            <button 
-              key={i} 
+            <button
+              key={i}
               className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
               onClick={() => setActiveFilter(cat)}
             >
@@ -682,13 +681,13 @@ function App() {
         </div>
 
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="projects-grid"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
-              <motion.div 
+              <motion.div
                 layout
                 key={project.title}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -701,10 +700,10 @@ function App() {
                   <div className="project-icon">{project.icon}</div>
                   <span style={{ fontSize: '0.8rem', color: 'var(--secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{project.category}</span>
                 </div>
-                
+
                 <h3 className="project-card-title">{project.title}</h3>
                 <p className="project-card-desc">{project.desc}</p>
-                
+
                 <div className="project-tags">
                   {project.tags.slice(0, 4).map((tag, i) => (
                     <span key={i} className="tag">{tag}</span>
@@ -715,9 +714,9 @@ function App() {
                 </div>
 
                 <div className="project-links">
-                  <button 
-                    onClick={() => setSelectedProject(project)} 
-                    className="project-link" 
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="project-link"
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                   >
                     <Eye size={16} /> Details
@@ -743,33 +742,33 @@ function App() {
       <AnimatePresence>
         {selectedProject && (
           <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-            <motion.div 
-              className="glass-panel modal-content" 
+            <motion.div
+              className="glass-panel modal-content"
               onClick={(e) => e.stopPropagation()}
             >
               <button className="modal-close" onClick={() => setSelectedProject(null)}>
                 <X size={18} />
               </button>
-              
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem' }}>
                 <span className="project-icon" style={{ color: 'var(--secondary)' }}>{selectedProject.icon}</span>
                 <span style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
                   {selectedProject.category}
                 </span>
               </div>
-              
+
               <h3 style={{ fontSize: '2rem', marginBottom: '1.2rem', fontWeight: 800 }}>{selectedProject.title}</h3>
               <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
                 {selectedProject.longDesc}
               </p>
-              
+
               <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.8rem', color: 'white' }}>Key Implementations & Features</h4>
               <ul className="timeline-bullets" style={{ marginBottom: '2rem' }}>
                 {selectedProject.achievements.map((ach, i) => (
                   <li key={i} style={{ fontSize: '0.95rem' }}>{ach}</li>
                 ))}
               </ul>
-              
+
               <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.8rem', color: 'white' }}>Technologies Used</h4>
               <div className="project-tags" style={{ marginBottom: '2rem' }}>
                 {selectedProject.tags.map((tag, i) => (
@@ -801,7 +800,7 @@ function App() {
 
       {/* Certifications Section */}
       <section id="certificates" className="section-container">
-        <motion.h2 
+        <motion.h2
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="section-title"
         >
@@ -809,7 +808,7 @@ function App() {
         </motion.h2>
         <div className="certs-grid">
           {certificationsData.map((cert, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { delay: index * 0.08 } } }}
@@ -831,11 +830,11 @@ function App() {
                     <span key={i} className="tag" style={{ borderColor: 'rgba(255, 42, 112, 0.15)', color: 'var(--secondary)' }}>{tag}</span>
                   ))}
                 </div>
-                <a 
-                  href={cert.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="project-link" 
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link"
                   style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
                   {cert.isImage ? "View Certificate" : "Open PDF Credential"} <ExternalLink size={14} />
@@ -848,7 +847,7 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="section-container">
-        <motion.h2 
+        <motion.h2
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="section-title"
         >
