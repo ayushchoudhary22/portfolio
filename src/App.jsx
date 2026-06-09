@@ -188,7 +188,8 @@ const projectsData = [
       "CNN",
     ],
     githubLink: "https://github.com/ayushchoudhary22/Spam-Email-Detection",
-    liveLink: "",
+    liveLink:
+      "https://spam-email-detection-88eesv2sbzfhcpumxacwil.streamlit.app/",
     achievements: [
       "Developed a Hybrid VotingClassifier (Naive Bayes + Linear SVM + Random Forest) hitting a solid 97.66% accuracy.",
       "Trained a Keras CNN (Embedding, Conv1D, MaxPooling, Dropout) achieving 98.83% spam detection accuracy.",
