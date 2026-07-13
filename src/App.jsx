@@ -49,6 +49,32 @@ const projectCategories = [
 
 const projectsData = [
   {
+    title: "TalentPulse",
+    category: "Web & Full-Stack",
+    icon: <Layers size={24} />,
+    desc: "AI-powered career placement & ATS tracker featuring structured Pydantic analysis, bias-free blind screening, and rate-limiting safeguards.",
+    longDesc:
+      "A modern, production-grade career placement and ATS tracking ecosystem. It leverages FastAPI on the backend and React on the frontend, integrating Google Gemini AI to deliver structured ATS analysis, personalized career roadmaps, and real-time remote job matching. The application is built with database resilience (MongoDB + local JSON fallback) and hardened security measures.",
+    tags: [
+      "React.js",
+      "FastAPI",
+      "Google Gemini AI",
+      "MongoDB",
+      "Python",
+      "PBKDF2 Hashing",
+      "Tailwind CSS",
+    ],
+    githubLink: "https://github.com/ayushchoudhary22/TalentPulse",
+    liveLink: "",
+    achievements: [
+      "Architected a career placement and ATS tracking ecosystem using React (Hooks, Custom Components) and FastAPI (Python), reducing candidate screening latency by 45%.",
+      "Integrated Google Gemini AI (genai-2.5-flash) via structured Pydantic schemas to deliver multi-metric ATS alignment and custom career roadmaps.",
+      "Hardened credential security using PBKDF2-HMAC-SHA256 with dynamic, cryptographically secure salts and timing-attack-resistant Bearer validation.",
+      "Implemented an IP-based sliding-window rate limiter in FastAPI and protected against XSS by escaping HTML inputs rendered in React.",
+      "Designed a Bias Reduction Mode enabling blind screening by dynamically anonymizing names and masking contact details in the recruiter module.",
+    ],
+  },
+  {
     title: "JKLU Cafeteria Portal",
     category: "Web & Full-Stack",
     icon: <Globe size={24} />,
@@ -511,6 +537,14 @@ const skillBubblesData = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   },
   {
+    name: "FastAPI",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+  },
+  {
+    name: "PyTorch",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+  },
+  {
     name: "Python",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   },
@@ -680,13 +714,18 @@ function App() {
             </motion.h3>
 
             <motion.div variants={fadeIn} className="role-badges">
-              {["MERN Stack", "Cybersecurity", "Big Data", "IoT", "Python"].map(
-                (role, i) => (
-                  <span key={i} className="role-badge">
-                    {role}
-                  </span>
-                ),
-              )}
+              {[
+                "MERN Stack",
+                "Data Science",
+                "Cybersecurity",
+                "AI & ML",
+                "IoT",
+                "Python",
+              ].map((role, i) => (
+                <span key={i} className="role-badge">
+                  {role}
+                </span>
+              ))}
             </motion.div>
 
             <motion.p
@@ -899,9 +938,10 @@ function App() {
               skills: [
                 "Python for Data Science",
                 "Machine Learning (Scikit-Learn)",
+                "Deep Learning (PyTorch & Keras)",
+                "Generative AI & LLMs (Gemini, RAG)",
                 "Pandas & NumPy",
                 "Data Visualization (Matplotlib & Seaborn)",
-                "Data Cleaning & Feature Engineering",
               ],
             },
           ].map((cat, idx) => (
@@ -957,6 +997,44 @@ function App() {
             className="timeline-item"
           >
             <div className="timeline-dot"></div>
+            <span className="timeline-date">May 2026 - July 2026</span>
+            <h3 className="timeline-title">Data Science Intern</h3>
+            <h4 className="timeline-company">
+              Celebal Technologies • Jaipur, Rajasthan (Remote)
+            </h4>
+            <ul className="timeline-bullets">
+              <li>
+                Implemented a complete Machine Learning and time series pipeline
+                (SARIMA) on Tesla sales data with GridSearchCV optimization.
+              </li>
+              <li>
+                Engineered Socio-Economic Clustering models using K-Means,
+                DBSCAN, and PCA, mapping development tiers with 97%+ accuracy.
+              </li>
+              <li>
+                Built Deep Learning architectures in PyTorch and TensorFlow,
+                comparing CNNs for CIFAR-10 image classification (68.99%
+                accuracy) and autoencoders for MNIST denoising.
+              </li>
+              <li>
+                Developed a 100% offline RAG Document Q&A chatbot using
+                Streamlit, leveraging custom TF-IDF parsing, BM25 retrieval, and
+                forward-decaying flow algorithms.
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="timeline-item"
+          >
+            <div
+              className="timeline-dot"
+              style={{ borderColor: "var(--secondary)" }}
+            ></div>
             <span className="timeline-date">MAY 2025 - JUL 2025</span>
             <h3 className="timeline-title">IoT Intern</h3>
             <h4 className="timeline-company">
@@ -989,10 +1067,7 @@ function App() {
             variants={fadeIn}
             className="timeline-item"
           >
-            <div
-              className="timeline-dot"
-              style={{ borderColor: "var(--secondary)" }}
-            ></div>
+            <div className="timeline-dot"></div>
             <span className="timeline-date">2023 - 2027</span>
             <h3 className="timeline-title">
               B.Tech in Computer Science Engineering (Cybersecurity)
