@@ -2,7 +2,7 @@
 
 A premium, dark-themed developer portfolio built with **React**, **Framer Motion**, and **Vite**. Featuring interactive background animations, a typewriter hero effect, glowing skill bubbles, and a cyberpunk aesthetic.
 
-🔗 **Live Site**: [portfolio-ayushchoudhary.vercel.app](https://portfolio-ayushchoudhary.vercel.app/)
+🔗 **Live Site**: [portfolio-ayushchoudhary.vercel.app](https://portfolio-omega-six-88.vercel.app/)
 
 ---
 
