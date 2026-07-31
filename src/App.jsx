@@ -75,6 +75,34 @@ const projectsData = [
     ],
   },
   {
+    title: "RetailSense AI",
+    category: "AI/ML & Big Data",
+    icon: <Database size={24} />,
+    desc: "Enterprise-grade demand forecasting platform using XGBoost & MLOps standards, projecting $2.45M in annual inventory ROI — built at Celebal Technologies.",
+    longDesc:
+      "A production-grade machine learning platform built to solve critical retail supply chain problems — overstocking and stockouts. Built during the Celebal Technologies internship, it deploys an XGBoost champion model on 5 years of Kaggle sales data (500 store-item combinations) and translates predictions into mathematical supply chain optimization and financial ROI, structured with Fortune 500 MLOps standards.",
+    tags: [
+      "Python",
+      "XGBoost",
+      "LightGBM",
+      "SHAP",
+      "Scikit-Learn",
+      "Pytest",
+      "Streamlit",
+      "Pandas",
+    ],
+    githubLink: "",
+    liveLink: "",
+    achievements: [
+      "Engineered a pipeline forecasting a 90-day horizon across 500 store-item combinations using 5 years of historical sales data with custom Pandas memory downcasting (62.5% memory reduction).",
+      "Benchmarked 6 algorithms using TimeSeriesSplit cross-validation; deployed XGBoost champion model reducing MAE by 41.4% against the historical baseline.",
+      "Integrated SHAP (SHapley Additive Explanations) to mathematically prove feature importance, demonstrating 7-day autoregressive lags as the primary demand driver.",
+      "Designed an automated supply chain engine calculating Safety Stock, Reorder Points (ROP), and dynamic inventory statuses (e.g., URGENT REORDER).",
+      "Conducted a Business Impact Analysis proving $2.45M reduction in annual inventory holding costs from model adoption.",
+      "Structured the entire codebase using enterprise MLOps standards: modular OOP in src/ backend, YAML configs, and 100% pytest pass rate.",
+    ],
+  },
+  {
     title: "JKLU Cafeteria Portal",
     category: "Web & Full-Stack",
     icon: <Globe size={24} />,
@@ -936,12 +964,12 @@ function App() {
               title: "Data & Machine Learning",
               icon: <Database size={24} color="var(--secondary)" />,
               skills: [
-                "Python for Data Science",
-                "Machine Learning (Scikit-Learn)",
-                "Deep Learning (PyTorch & Keras)",
+                "Machine Learning (XGBoost, LightGBM, Scikit-Learn)",
+                "Deep Learning (PyTorch, TensorFlow, Keras)",
+                "Explainable AI (SHAP)",
                 "Generative AI & LLMs (Gemini, RAG)",
-                "Pandas & NumPy",
-                "Data Visualization (Matplotlib & Seaborn)",
+                "MLOps (Pytest, OOP, YAML Configs)",
+                "Data Engineering (Pandas, Streamlit)",
               ],
             },
           ].map((cat, idx) => (
@@ -1004,12 +1032,11 @@ function App() {
             </h4>
             <ul className="timeline-bullets">
               <li>
-                Implemented a complete Machine Learning and time series pipeline
-                (SARIMA) on Tesla sales data with GridSearchCV optimization.
+                Built <strong>RetailSense AI</strong> — an enterprise XGBoost demand forecasting pipeline on 5 years of sales data, reducing MAE by 41.4% and projecting <strong>$2.45M in annual ROI</strong> through supply chain optimization.
               </li>
               <li>
                 Engineered Socio-Economic Clustering models using K-Means,
-                DBSCAN, and PCA, mapping development tiers with 97%+ accuracy.
+                DBSCAN, and PCA, mapping 167 countries into development tiers with 97%+ accuracy.
               </li>
               <li>
                 Built Deep Learning architectures in PyTorch and TensorFlow,
