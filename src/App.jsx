@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -9,24 +9,25 @@ import {
   Database,
   Terminal,
   Award,
-  Server,
   Cpu,
   Eye,
   X,
-  BookOpen,
   Layers,
   Globe,
-  Filter,
-  MapPin,
-  Briefcase,
-  GraduationCap,
+  Copy,
+  Check,
+  CheckCircle2,
+  Lock,
+  BarChart3,
+  ChevronRight,
+  Sparkles,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./index.css";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const staggerContainer = {
@@ -34,15 +35,15 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const projectCategories = [
   "All",
-  "Web & Full-Stack",
   "Cybersecurity",
+  "Web & Full-Stack",
   "AI/ML & Big Data",
   "IoT & Python",
 ];
@@ -51,36 +52,36 @@ const projectsData = [
   {
     title: "TalentPulse",
     category: "Web & Full-Stack",
-    icon: <Layers size={24} />,
-    desc: "AI-powered career placement & ATS tracker featuring structured Pydantic analysis, bias-free blind screening, and rate-limiting safeguards.",
+    icon: <Layers size={22} />,
+    desc: "AI-powered career placement & ATS intelligence platform featuring structured Pydantic schemas, blind screening mode, and rate-limiting safeguards.",
     longDesc:
-      "A modern, production-grade career placement and ATS tracking ecosystem. It leverages FastAPI on the backend and React on the frontend, integrating Google Gemini AI to deliver structured ATS analysis, personalized career roadmaps, and real-time remote job matching. The application is built with database resilience (MongoDB + local JSON fallback) and hardened security measures.",
+      "A modern career placement and ATS tracking ecosystem. It leverages FastAPI on the backend and React on the frontend, integrating Google Gemini AI to deliver structured ATS analysis, personalized career roadmaps, and real-time remote job matching. The application is built with database resilience (MongoDB + local JSON fallback) and hardened authentication security.",
     tags: [
       "React.js",
       "FastAPI",
-      "Google Gemini AI",
-      "MongoDB",
       "Python",
+      "MongoDB",
       "PBKDF2 Hashing",
+      "Pydantic",
       "Tailwind CSS",
     ],
     githubLink: "https://github.com/ayushchoudhary22/TalentPulse",
     liveLink: "",
     achievements: [
-      "Architected a career placement and ATS tracking ecosystem using React (Hooks, Custom Components) and FastAPI (Python), reducing candidate screening latency by 45%.",
-      "Integrated Google Gemini AI (genai-2.5-flash) via structured Pydantic schemas to deliver multi-metric ATS alignment and custom career roadmaps.",
-      "Hardened credential security using PBKDF2-HMAC-SHA256 with dynamic, cryptographically secure salts and timing-attack-resistant Bearer validation.",
-      "Implemented an IP-based sliding-window rate limiter in FastAPI and protected against XSS by escaping HTML inputs rendered in React.",
-      "Designed a Bias Reduction Mode enabling blind screening by dynamically anonymizing names and masking contact details in the recruiter module.",
+      "Architected a career placement and ATS tracking ecosystem using React and FastAPI, reducing candidate screening latency by 45%.",
+      "Integrated Google Gemini AI via structured Pydantic schemas to deliver multi-metric ATS alignment and personalized career roadmaps.",
+      "Hardened credential security using PBKDF2-HMAC-SHA256 with dynamic salts and timing-attack-resistant Bearer token validation.",
+      "Implemented an IP-based sliding-window rate limiter in FastAPI and protected against XSS by sanitizing inputs rendered in React.",
+      "Designed a Bias Reduction Mode enabling blind screening by dynamically anonymizing names and contact details in recruiter view.",
     ],
   },
   {
     title: "RetailSense AI",
     category: "AI/ML & Big Data",
-    icon: <Database size={24} />,
-    desc: "Enterprise-grade demand forecasting platform using XGBoost & MLOps standards, projecting $2.45M in annual inventory ROI — built at Celebal Technologies.",
+    icon: <Database size={22} />,
+    desc: "Enterprise demand forecasting platform using XGBoost & MLOps standards, projecting $2.45M in annual inventory ROI — engineered at Celebal Technologies.",
     longDesc:
-      "A production-grade machine learning platform built to solve critical retail supply chain problems — overstocking and stockouts. Built during the Celebal Technologies internship, it deploys an XGBoost champion model on 5 years of Kaggle sales data (500 store-item combinations) and translates predictions into mathematical supply chain optimization and financial ROI, structured with Fortune 500 MLOps standards.",
+      "A production-grade machine learning platform built to solve critical retail supply chain challenges — overstocking and stockouts. Built during the Celebal Technologies internship, it deploys an XGBoost champion model on 5 years of historical sales data (500 store-item combinations) and translates predictions into mathematical supply chain optimization and financial ROI.",
     tags: [
       "Python",
       "XGBoost",
@@ -94,21 +95,46 @@ const projectsData = [
     githubLink: "",
     liveLink: "",
     achievements: [
-      "Engineered a pipeline forecasting a 90-day horizon across 500 store-item combinations using 5 years of historical sales data with custom Pandas memory downcasting (62.5% memory reduction).",
-      "Benchmarked 6 algorithms using TimeSeriesSplit cross-validation; deployed XGBoost champion model reducing MAE by 41.4% against the historical baseline.",
-      "Integrated SHAP (SHapley Additive Explanations) to mathematically prove feature importance, demonstrating 7-day autoregressive lags as the primary demand driver.",
-      "Designed an automated supply chain engine calculating Safety Stock, Reorder Points (ROP), and dynamic inventory statuses (e.g., URGENT REORDER).",
-      "Conducted a Business Impact Analysis proving $2.45M reduction in annual inventory holding costs from model adoption.",
-      "Structured the entire codebase using enterprise MLOps standards: modular OOP in src/ backend, YAML configs, and 100% pytest pass rate.",
+      "Engineered a forecasting pipeline over a 90-day horizon across 500 store-item combinations using 5 years of historical sales data with custom Pandas memory downcasting (62.5% reduction).",
+      "Benchmarked 6 algorithms using TimeSeriesSplit cross-validation; deployed XGBoost champion model reducing MAE by 41.4% against historical baseline.",
+      "Integrated SHAP to mathematically prove feature importance, identifying 7-day autoregressive lags as primary demand drivers.",
+      "Designed an automated supply chain engine calculating Safety Stock, Reorder Points (ROP), and dynamic inventory statuses.",
+      "Conducted Business Impact Analysis demonstrating $2.45M reduction in annual holding costs.",
+      "Structured codebase using enterprise MLOps standards: modular OOP in src/, YAML configs, and 100% pytest pass rate.",
+    ],
+  },
+  {
+    title: "AI Penetration Testing Suite",
+    category: "Cybersecurity",
+    icon: <Shield size={22} />,
+    desc: "Automated vulnerability scanner combining multi-threaded crawlers, Nmap port diagnostics, SQLi/XSS detectors, and Gemini AI remediation advice.",
+    longDesc:
+      "A modular cybersecurity audit tool written in Python & Flask. Featuring high-speed network diagnostics, spider crawling, and active vulnerability verification, the app provides real-time terminal log streaming and structured audit reporting for remediation.",
+    tags: [
+      "Python",
+      "Flask",
+      "WebSockets",
+      "Nmap",
+      "SQLMap",
+      "Google Gemini API",
+      "Security Auditing",
+    ],
+    githubLink: "https://github.com/ayushchoudhary22/Pentration-Tool",
+    liveLink: "",
+    achievements: [
+      "Built custom multi-threaded crawler to index targets, extract headers, cookies, and discover hidden endpoints.",
+      "Designed active detection engines for error-based SQL Injection and reflective Cross-Site Scripting (XSS).",
+      "Integrated Google Gemini API to review vulnerability payloads and output actionable, step-by-step code remediations.",
+      "Created a real-time terminal stream to the UI using Socket.io and compiled downloadable HTML/PDF vulnerability triage reports.",
     ],
   },
   {
     title: "JKLU Cafeteria Portal",
     category: "Web & Full-Stack",
-    icon: <Globe size={24} />,
-    desc: "MERN check-in and booking engine with Azure AD SSO integration, Razorpay verification, and dynamic QR entry.",
+    icon: <Globe size={22} />,
+    desc: "MERN check-in and booking engine with Azure AD SSO integration, Razorpay HMAC verification, and dynamic QR entry.",
     longDesc:
-      "A production-ready cafeteria digitized check-in and billing portal for JKLU students. Replacing slow and manual paper tracking, this application secures user onboarding with Microsoft SSO and enables fast dynamic QR-code scans for entry verification.",
+      "A digitized check-in and billing portal for JKLU students. Replacing slow and manual paper tracking, this application secures user onboarding with Microsoft Azure AD SSO and enables fast dynamic QR-code scans for entry verification.",
     tags: [
       "React.js",
       "Node.js",
@@ -122,43 +148,44 @@ const projectsData = [
     liveLink: "https://mess-portal-frontend.vercel.app/",
     achievements: [
       "Engineered dynamic check-in module generating encrypted QR codes for instant cafeteria entry.",
-      "Integrated Microsoft Azure AD SSO for domain-restricted student login with role-based access control.",
-      "Embedded Razorpay Payment Gateway backed by HMAC-SHA256 signature verification for meal booking safety.",
+      "Integrated Microsoft Azure AD SSO for domain-restricted student login with role-based access control (RBAC).",
+      "Embedded Razorpay Payment Gateway backed by HMAC-SHA256 signature verification for meal booking security.",
       "Built clean Tailwind UI with animated blur-modals, real-time scanning feed, and dietary preferences selector.",
     ],
   },
   {
-    title: "AI Penetration Testing Suite",
+    title: "Spam Email Detection & Anti-Phishing",
     category: "Cybersecurity",
-    icon: <Shield size={24} />,
-    desc: "Automated vulnerability scanner combining multi-threaded crawlers, SQLi/XSS detectors, and Gemini AI advice.",
+    icon: <Terminal size={22} />,
+    desc: "Hybrid voting classifier and CNN deep learning models comparing email spam & phishing classification accuracy (98.83% accuracy).",
     longDesc:
-      "A modular, full-stack cybersecurity audit tool written in Python & Flask. Featuring high-speed network diagnostics, spider crawling, and active vulnerability verification, the app relies on the Google Gemini API to analyze threats and output detailed code fixes.",
+      "A machine learning and deep learning project analyzing SMS and email datasets. Contrasts standard algorithms using TF-IDF feature mapping against an 1D Convolutional Neural Network (CNN) to achieve high-performance text classification and suspicious email triage.",
     tags: [
       "Python",
-      "Flask",
-      "WebSockets",
-      "Google Gemini API",
-      "Nmap",
-      "SQLMap",
-      "Web Crawler",
+      "NLP",
+      "Scikit-Learn",
+      "TensorFlow",
+      "Keras",
+      "Streamlit",
+      "CNN",
     ],
-    githubLink: "https://github.com/ayushchoudhary22/Pentration-Tool",
-    liveLink: "",
+    githubLink: "https://github.com/ayushchoudhary22/Spam-Email-Detection",
+    liveLink:
+      "https://spam-email-detection-88eesv2sbzfhcpumxacwil.streamlit.app/",
     achievements: [
-      "Built custom multi-threaded crawler to index targets, extract headers, cookies, and discover hidden endpoints.",
-      "Designed active detection engines for error-based SQL Injection and reflective Cross-Site Scripting (XSS).",
-      "Integrated Google Gemini API to review vulnerability payloads and output actionable, step-by-step code remediations.",
-      "Created a real-time terminal stream to the UI using Socket.io and compiled beautiful downloadable HTML/PDF reports.",
+      "Developed a Hybrid VotingClassifier (Naive Bayes + Linear SVM + Random Forest) hitting 97.66% accuracy.",
+      "Trained a Keras CNN (Embedding, Conv1D, MaxPooling, Dropout) achieving 98.83% spam/phishing detection accuracy.",
+      "Engineered text pre-processing pipelines including tokenization, stopword removal, and TF-IDF vectorization.",
+      "Created a Streamlit web portal allowing users to input and evaluate email text and headers dynamically.",
     ],
   },
   {
     title: "Smart City Streaming Pipeline",
     category: "AI/ML & Big Data",
-    icon: <Cpu size={24} />,
+    icon: <Cpu size={22} />,
     desc: "Real-time traffic & pollution analytics pipeline using Apache Spark, Kafka streams, and PostgreSQL database.",
     longDesc:
-      "A scalable data streaming engine designed to simulate and process city telemetry. Reads real-time data feeds from Kafka topics, aggregates records through time-window bounds in Spark, and writes output to a database for analytical charts.",
+      "A scalable data streaming engine designed to simulate and process city telemetry. Reads real-time data feeds from Kafka topics, aggregates records through time-window bounds in Spark, and writes output to a database for analytical dashboards.",
     tags: [
       "Apache Spark",
       "Kafka",
@@ -172,38 +199,14 @@ const projectsData = [
     achievements: [
       "Simulated continuous telemetry feeds using Kafka producers with 10-second-rounded timestamps.",
       "Aggregated vehicle speeds and PM2.5/PM10 metrics using 10s tumbling windows with 60s watermarks in Spark.",
-      "Performed windowed stream-stream joins to align traffic patterns with environmental data.",
+      "Performed windowed stream-stream joins to align traffic patterns with environmental metrics.",
       "Persisted joined analytical records to PostgreSQL database using optimized foreachBatch Spark handlers.",
-    ],
-  },
-  {
-    title: "Distributed News Recommender",
-    category: "AI/ML & Big Data",
-    icon: <Database size={24} />,
-    desc: "MapReduce recommendation engine running on Python mrjob to compute Document-Term Matrix (DTM) and Cosine Similarity.",
-    longDesc:
-      "A distributed big data pipeline designed to recommend news articles based on user histories. Employs MapReduce algorithms to build text vectors, aggregate user reading logs, and calculate vector similarities.",
-    tags: [
-      "MapReduce",
-      "Python",
-      "mrjob",
-      "TF-IDF",
-      "Cosine Similarity",
-      "Algorithms",
-    ],
-    githubLink: "",
-    liveLink: "",
-    achievements: [
-      "Tokenized and computed Document-Term Matrix frequencies over thousands of text records in MapReduce mapper/reducer tasks.",
-      "Aggregated user reading logs to build customized preference weights for individual user profiles.",
-      "Precomputed document magnitudes to quickly calculate Cosine Similarity scores for recommended candidate lists.",
-      "Utilized Python heapq to return the top N matching articles per user with minimal memory overhead.",
     ],
   },
   {
     title: "Oil-Mil E-Commerce System",
     category: "Web & Full-Stack",
-    icon: <Layers size={24} />,
+    icon: <Layers size={22} />,
     desc: "Organic store portal with interactive shopping cart checkout and secure, JWT-based admin inventory console.",
     longDesc:
       "A specialized MERN e-commerce application serving organic oil customers. It offers a catalog view, cart checkout processes, and a secure dashboard for administrative managers to monitor bookings and update stock lists.",
@@ -221,59 +224,31 @@ const projectsData = [
     achievements: [
       "Engineered clean shopping interface with real-time cart subtotal calculations and product filters.",
       "Restricted admin operations using JWT cookie verify protocols and cryptographic Bcrypt password hashing.",
-      "Created structured Order schemas storing client addresses, contact logs, and items quantities.",
+      "Created structured Order schemas storing client addresses, contact logs, and item quantities.",
       "Secured API endpoints with CORS configurations and Helmet security headers integration.",
-    ],
-  },
-  {
-    title: "Spam Detection Ensemble",
-    category: "AI/ML & Big Data",
-    icon: <Terminal size={24} />,
-    desc: "Hybrid voting classifier and CNN deep learning models comparing email spam classification accuracy.",
-    longDesc:
-      "An advanced machine learning and deep learning project analyzing SMS and email data. Contrasts standard algorithms using TF-IDF feature mapping against an 1D Convolutional Neural Network (CNN) to achieve high-performance text classification.",
-    tags: [
-      "Python",
-      "Scikit-Learn",
-      "TensorFlow",
-      "Keras",
-      "NLP",
-      "Streamlit",
-      "CNN",
-    ],
-    githubLink: "https://github.com/ayushchoudhary22/Spam-Email-Detection",
-    liveLink:
-      "https://spam-email-detection-88eesv2sbzfhcpumxacwil.streamlit.app/",
-    achievements: [
-      "Developed a Hybrid VotingClassifier (Naive Bayes + Linear SVM + Random Forest) hitting a solid 97.66% accuracy.",
-      "Trained a Keras CNN (Embedding, Conv1D, MaxPooling, Dropout) achieving 98.83% spam detection accuracy.",
-      "Cleaned data strings through tokenization, stopwords stripping, and text vectorization preprocessing.",
-      "Created a Streamlit web portal allowing users to type and evaluate email snippets dynamically.",
     ],
   },
   {
     title: "Desktop E-Voting System",
     category: "IoT & Python",
-    icon: <Briefcase size={24} />,
-    desc: "Python Tkinter GUI application with role-based logins and persistent JSON databases.",
+    icon: <Code2 size={22} />,
+    desc: "Python desktop GUI application featuring role-based logins and persistent JSON databases.",
     longDesc:
       "A local GUI application built to simulate electronic elections. It features distinct panels for voters and administrators. Users can cast votes for registered candidates, while admins manage candidates and reset election data.",
     tags: ["Python", "Tkinter", "Pillow (PIL)", "JSON DB", "Desktop GUI"],
-    githubLink:
-      "https://github.com/ayushchoudhary22/voting-Machine-using-python",
+    githubLink: "https://github.com/ayushchoudhary22/voting-Machine-using-python",
     liveLink: "",
     achievements: [
       "Designed a robust role-based login system separating standard voters from administrative operators.",
       "Utilized JSON file storage to persistently track candidate records, vote metrics, and login credentials.",
-      "Rendered custom university branding logos and candidate avatars using Python Pillow (PIL).",
-      "Enforced voter verification to prevent multiple vote casting in the same session.",
+      "Enforced voter verification to prevent duplicate votes in the same session.",
     ],
   },
   {
     title: "SDG-7 Clean Energy Analysis",
     category: "AI/ML & Big Data",
-    icon: <BookOpen size={24} />,
-    desc: "Data Science research on global electrification access and clean energy trends using linear regression.",
+    icon: <Database size={22} />,
+    desc: "Data Science research on global electrification access and clean energy trends using linear regression and statistical modeling.",
     longDesc:
       "An analytical study investigating global progress towards United Nations Sustainable Development Goal 7 (Affordable and Clean Energy). Processes decades of energy consumption datasets using regression algorithms to output sustainability predictions.",
     tags: [
@@ -283,693 +258,496 @@ const projectsData = [
       "Matplotlib",
       "Seaborn",
       "Linear Regression",
-      "Data Science",
     ],
     githubLink: "",
     liveLink: "",
     achievements: [
       "Parsed decades of renewable energy consumption databases across G20 nations using Pandas.",
       "Built linear regression models predicting electricity access and renewable energy shares for 2030.",
-      "Performed hypothesis testing to check significance levels of regional efficiency improvements.",
-      "Produced clean Seaborn and Matplotlib visualization charts tracing India's energy transition.",
+      "Produced clean Seaborn and Matplotlib visualization charts tracing clean energy adoption.",
     ],
   },
   {
-    title: "IoT WhatsApp Alert System",
+    title: "IoT Telemetry Alert System",
     category: "IoT & Python",
-    icon: <Cpu size={24} />,
-    desc: "Serial interface script listening to Arduino sensors and automating instant alerts via pywhatkit.",
+    icon: <Cpu size={22} />,
+    desc: "Serial interface script listening to Arduino hardware sensors and automating instant alerts via PySerial.",
     longDesc:
-      "A bridge script linking hardware automation with user notification. Reads COM port telemetry from Arduino systems (e.g. soil moisture, automated valves) and automatically forwards notifications to WhatsApp.",
-    tags: [
-      "Arduino",
-      "Python",
-      "Serial (pyserial)",
-      "pywhatkit",
-      "IoT",
-      "Automation",
-    ],
+      "A bridge script linking hardware automation with user notification. Reads COM port telemetry from Arduino systems (e.g. soil moisture, automated valves) and automatically forwards notifications.",
+    tags: ["Arduino", "Python", "Serial (PySerial)", "IoT", "Automation"],
     githubLink: "",
     liveLink: "",
     achievements: [
-      "Created continuous serial connection (COM3/9600 baud) using pyserial to listen for hardware updates.",
-      "Parsed incoming sensor telemetry strings to filter out background logs from action triggers.",
-      "Integrated pywhatkit library to dispatch automated WhatsApp alert messages to phone numbers.",
-      "Implemented alert cooldowns to avoid message spam and preserve system stability.",
+      "Created continuous serial connection (9600 baud) using PySerial to listen for hardware updates.",
+      "Parsed incoming sensor telemetry strings to filter background logs from action triggers.",
+      "Implemented alert cooldowns to avoid notification spam and preserve system stability.",
     ],
   },
 ];
 
 const certificationsData = [
   {
-    title: "Red Hat System Administration I (RH124)",
-    desc: "Completed RH124 course verifying foundational Linux systems administration, permission structures, command line, and process controls.",
-    tags: ["Linux", "Red Hat", "SysAdmin"],
-    link: "/certificates/red-hat.png",
-    isImage: true,
+    title: "EC-Council Certified Ethical Hacker (CEH v13)",
+    issuer: "EC-Council",
+    desc: "Comprehensive ANSI-accredited cybersecurity credential verifying penetration testing methodologies, vulnerability assessments, network attack vectors, and countermeasures.",
+    tags: ["Ethical Hacking", "CEH v13", "Penetration Testing", "Network Defense"],
+    link: "/certificates/ECC-CEH-ANSI-Certificate.pdf",
+    isImage: false,
   },
   {
-    title: "Google Cybersecurity Certification",
-    desc: "Multi-course certification covering network configurations, Linux systems, SQL operations, and security risk mitigations.",
-    tags: ["Cybersecurity", "Google", "SQL", "Network Security"],
+    title: "Google Cybersecurity Professional Certificate",
+    issuer: "Google / Coursera",
+    desc: "Comprehensive 8-course credential covering incident triage, SIEM & SOC basics, Linux security, network defense, packet analysis, and SQL operations.",
+    tags: ["Cybersecurity", "SIEM", "SOC Basics", "Incident Triage", "Linux"],
     link: "/certificates/coursera-google-1.pdf",
     isImage: false,
   },
   {
-    title: "Python for Data Science, AI & Development",
-    desc: "Coursera certification by IBM validating core Python coding, library usage (Pandas, NumPy), and web APIs interaction.",
-    tags: ["Python", "Data Science", "AI", "IBM"],
+    title: "Red Hat System Administration I (RH124)",
+    issuer: "Red Hat",
+    desc: "Completed official Red Hat RH124 course verifying foundational Linux systems administration, user permissions, storage management, and process controls.",
+    tags: ["Linux", "Red Hat", "SysAdmin", "Security"],
+    link: "/certificates/red-hat.png",
+    isImage: true,
+  },
+  {
+    title: "IBM Python for Data Science, AI & Development",
+    issuer: "IBM / Coursera",
+    desc: "Validates proficiency in core Python programming, data analysis libraries (Pandas, NumPy), and consuming RESTful web APIs.",
+    tags: ["Python", "Data Science", "AI", "REST APIs"],
     link: "/certificates/python-ds-ai.pdf",
     isImage: false,
   },
   {
     title: "Ethical Hacking Foundation",
-    desc: "Security training confirming knowledge of penetration testing phases, network vulnerability scanning, and defense practices.",
-    tags: ["Cybersecurity", "Ethical Hacking", "InfoSec"],
+    issuer: "Cybersecurity Training",
+    desc: "Validates core principles of penetration testing lifecycle, network vulnerability scanning, threat identification, and remediation practices.",
+    tags: ["Penetration Testing", "Ethical Hacking", "InfoSec"],
     link: "/certificates/ehf.pdf",
     isImage: false,
   },
   {
     title: "Big Data & Apache Spark",
-    desc: "Academic credential demonstrating mastery of parallel data structures, Spark DataFrames, and distributed compute concepts.",
+    issuer: "Academic Credential",
+    desc: "Demonstrates mastery of parallel computing paradigms, Spark DataFrames, distributed datasets, and batch/stream processing.",
     tags: ["Big Data", "Apache Spark", "Distributed Computing"],
     link: "/certificates/big-data.pdf",
     isImage: false,
   },
 ];
 
-function InteractiveBg() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
-    let particles = [];
-    let mouse = { x: null, y: null, radius: 150 };
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    };
-
-    class Particle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 2 + 1;
-
-        // Match theme colors: primary (#45f3ff), secondary (#ff2a70), accent (#bd93f9)
-        const rand = Math.random();
-        if (rand < 0.5) {
-          this.color = "rgba(69, 243, 255, 0.45)";
-        } else if (rand < 0.8) {
-          this.color = "rgba(255, 42, 112, 0.45)";
-        } else {
-          this.color = "rgba(189, 147, 249, 0.45)";
-        }
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Bounce
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-
-        // Smooth mouse attraction
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.x += (dx / dist) * force * 0.25;
-            this.y += (dy / dist) * force * 0.25;
-          }
-        }
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-    }
-
-    const initParticles = () => {
-      particles = [];
-      const particleCount = Math.min(
-        80,
-        Math.floor((canvas.width * canvas.height) / 22000),
-      );
-      for (let i = 0; i < particleCount; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        particles.push(new Particle(x, y));
-      }
-    };
-
-    const drawLines = () => {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.hypot(dx, dy);
-
-          if (dist < 100) {
-            const alpha = ((100 - dist) / 100) * 0.15;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(69, 243, 255, ${alpha})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = particles[i].x - mouse.x;
-          const dy = particles[i].y - mouse.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < mouse.radius) {
-            const alpha = ((mouse.radius - dist) / mouse.radius) * 0.25;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 42, 112, ${alpha})`;
-            ctx.lineWidth = 0.9;
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-
-      drawLines();
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener("resize", resizeCanvas);
-
-    const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.x = null;
-      mouse.y = null;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    resizeCanvas();
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="interactive-bg-canvas" />;
-}
-
-const typewriterRoles = [
-  "Full-Stack Developer",
-  "Security Engineer",
-  "Data Science Engineer",
+const techPills = [
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "C / C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+  { name: "React.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+  { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+  { name: "Tableau", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/salesforce/salesforce-original.svg" },
+  { name: "R", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+  { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
 ];
 
-function TypewriterText() {
-  const [text, setText] = useState("");
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentRole = typewriterRoles[roleIndex];
-    let timeout;
-
-    if (!isDeleting && text === currentRole) {
-      timeout = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && text === "") {
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % typewriterRoles.length);
-    } else {
-      timeout = setTimeout(
-        () => {
-          setText(
-            currentRole.substring(0, text.length + (isDeleting ? -1 : 1)),
-          );
-        },
-        isDeleting ? 40 : 80,
-      );
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, roleIndex]);
-
-  return (
-    <span className="typewriter-wrapper">
-      {text}
-      <span className="typewriter-cursor" />
-    </span>
-  );
-}
-
-const skillBubblesData = [
-  {
-    name: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  },
-  {
-    name: "Node.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "FastAPI",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
-  },
-  {
-    name: "PyTorch",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
-  },
-  {
-    name: "Python",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  },
-  {
-    name: "JavaScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  },
-  {
-    name: "MongoDB",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  },
-  {
-    name: "Express",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-  },
-  {
-    name: "C/C++",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  },
-  {
-    name: "Linux",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-  },
-  {
-    name: "PostgreSQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-  },
-  {
-    name: "Git",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  },
-  {
-    name: "Docker",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-  },
-  {
-    name: "TensorFlow",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-  },
-  {
-    name: "Pandas",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
-  },
-  {
-    name: "NumPy",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
-  },
-  {
-    name: "MySQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-  },
-  {
-    name: "Tailwind",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-  },
-];
-
-function App() {
+export default function App() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const filteredProjects =
     activeFilter === "All"
       ? projectsData
       : projectsData.filter((proj) => proj.category === activeFilter);
 
-  return (
-    <div className="app">
-      {/* Animated Cyber Background */}
-      <div className="bg-animation-container">
-        <div className="cyber-grid"></div>
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="blob blob-3"></div>
-      </div>
-      <InteractiveBg />
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("ayushchoudhary18481@gmail.com");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
 
-      {/* Navigation */}
-      <nav>
-        <a href="#" className="nav-logo">
-          Ayush<span>.</span>
+  return (
+    <div className="app-container">
+      {/* Modern Mesh Grid Background */}
+      <div className="modern-mesh-bg" />
+
+      {/* Floating Navbar */}
+      <nav className="navbar">
+        <a href="#" className="nav-brand">
+          Ayush Choudhary
+          <span className="nav-badge">CEH v13</span>
         </a>
         <ul className="nav-links">
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#skills">Skills</a>
-          </li>
-          <li>
-            <a href="#experience">Experience</a>
-          </li>
-          <li>
-            <a href="#projects">Projects</a>
-          </li>
-          <li>
-            <a href="#certificates">Certificates</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#credentials">Certifications</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+        <a href="#contact" className="nav-cta">
+          Let's Connect <ChevronRight size={14} />
+        </a>
       </nav>
 
       {/* Hero Section */}
-      <section
-        id="about"
-        className="section-container"
-        style={{
-          minHeight: "100vh",
-          paddingTop: "8.5rem",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "3rem",
-            width: "100%",
-          }}
-        >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            style={{ flex: "1.2", minWidth: "320px" }}
-          >
-            <motion.h2
-              variants={fadeIn}
-              style={{
-                color: "var(--primary)",
-                fontSize: "1.2rem",
-                fontWeight: 600,
-                letterSpacing: "1px",
-                textTransform: "uppercase",
-                marginBottom: "0.8rem",
-              }}
-            >
-              B.Tech CSE Cybersecurity Student
-            </motion.h2>
-            <motion.h1
-              variants={fadeIn}
-              style={{
-                fontSize: "4.2rem",
-                lineHeight: "1.1",
-                marginBottom: "1.2rem",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
-              }}
-            >
-              Ayush Choudhary
+      <section id="about" className="section-container" style={{ minHeight: "92vh", display: "flex", alignItems: "center" }}>
+        <div className="hero-content">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+            <motion.h1 variants={fadeIn} className="hero-name" style={{ marginTop: "1rem" }}>
+              Building Secure, <br />
+              <span className="hero-name-gradient">Scalable Software</span>.
             </motion.h1>
-            <motion.h3
-              variants={fadeIn}
-              style={{
-                fontSize: "1.8rem",
-                color: "var(--text-muted)",
-                fontWeight: 500,
-                marginBottom: "1.5rem",
-              }}
-            >
-              <TypewriterText />
-            </motion.h3>
 
-            <motion.div variants={fadeIn} className="role-badges">
-              {[
-                "MERN Stack",
-                "Data Science",
-                "Cybersecurity",
-                "AI & ML",
-                "IoT",
-                "Python",
-              ].map((role, i) => (
-                <span key={i} className="role-badge">
-                  {role}
-                </span>
-              ))}
+            <motion.div variants={fadeIn} className="hero-roles">
+              <span>Full-Stack Developer</span>
+              <span style={{ color: "var(--accent-emerald)" }}>•</span>
+              <span style={{ color: "var(--accent-amber)" }}>CEH v13 Certified</span>
+              <span style={{ color: "var(--accent-emerald)" }}>•</span>
+              <span>Data & ML</span>
             </motion.div>
 
-            <motion.p
-              variants={fadeIn}
-              style={{
-                fontSize: "1.05rem",
-                color: "var(--text-muted)",
-                marginBottom: "2rem",
-                maxWidth: "620px",
-                lineHeight: "1.7",
-              }}
-            >
-              I study at{" "}
-              <strong style={{ color: "white" }}>
-                JK Lakshmipat University
-              </strong>
-              . I build robust full-stack applications with the MERN stack and
-              write secure, automated code. As a Data Science Student,I work
-              with data-driven solutions and machine learning while also
-              exploring cybersecurity and secure system design. I enjoy
-              architecting reliable, scalable, and intelligent systems that
-              solve real-world problems.
+            <motion.p variants={fadeIn} className="hero-bio">
+              I'm Ayush Choudhary, a Computer Science Engineering student (2027 batch) at{" "}
+              <strong style={{ color: "white" }}>JK Lakshmipat University</strong>. Certified in{" "}
+              <strong style={{ color: "var(--accent-amber)" }}>EC-Council CEH v13</strong>, I specialize in full-stack development (React, FastAPI, Node.js), practical cybersecurity, and data analysis. Experienced in building demand forecasting pipelines at{" "}
+              <strong style={{ color: "white" }}>Celebal Technologies</strong> and IoT systems at JNU.
             </motion.p>
 
-            <motion.div variants={fadeIn} className="info-cards-row">
-              <div className="info-card">
-                <span className="info-card-icon">📍</span>
-                <div>
-                  <div className="info-card-label">Location</div>
-                  <div className="info-card-value">Jaipur, Rajasthan</div>
+            <motion.div variants={fadeIn} className="hero-badges-strip">
+              <span className="hero-tag highlight">🛡️ EC-Council CEH v13</span>
+              <span className="hero-tag">⚡ Full-Stack (MERN & FastAPI)</span>
+              <span className="hero-tag">🐧 Linux SysAdmin (RH124)</span>
+              <span className="hero-tag">📊 Tableau & R</span>
+              <span className="hero-tag">🔍 Google Cybersecurity</span>
+            </motion.div>
+
+            <motion.div variants={fadeIn} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+              <a href="/Ayush_Choudhary_Resume.pdf" download className="btn btn-primary">
+                <Download size={18} /> Download Resume
+              </a>
+              <a href="#projects" className="btn btn-secondary">
+                View Projects
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Photo & Developer Terminal Hub */}
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="hero-visual-col"
+          >
+            {/* Real Headshot Profile Card */}
+            <div className="hero-photo-card glass-panel">
+              <div className="hero-photo-wrapper">
+                <img
+                  src="/profile.png"
+                  alt="Ayush Choudhary"
+                  className="hero-profile-img"
+                />
+                <div className="hero-photo-badge">
+                  <Shield size={14} color="var(--accent-amber)" />
+                  <span>EC-Council CEH v13</span>
                 </div>
               </div>
-              <div className="info-card">
-                <span className="info-card-icon">💼</span>
+              <div className="hero-photo-footer">
                 <div>
-                  <div className="info-card-label">Expertise</div>
-                  <div className="info-card-value">Full-Stack & Security</div>
+                  <h3 className="hero-photo-name">Ayush Choudhary</h3>
+                  <p className="hero-photo-role">Full-Stack Dev & Cybersecurity</p>
+                </div>
+                <div className="hero-photo-status">
+                  <span className="pulse-dot" />
+                  <span>JKLU CSE '27</span>
                 </div>
               </div>
-              <div className="info-card">
-                <span className="info-card-icon">📧</span>
-                <div>
-                  <div className="info-card-label">Contact</div>
-                  <div className="info-card-value">
-                    ayushchoudhary18481@gmail.com
+            </div>
+
+            {/* Terminal Window */}
+            <div className="terminal-window">
+              <div className="terminal-header">
+                <div className="terminal-dots">
+                  <span className="terminal-dot red" />
+                  <span className="terminal-dot yellow" />
+                  <span className="terminal-dot green" />
+                </div>
+                <span className="terminal-title">ayush@sec-node:~ (zsh)</span>
+                <Shield size={14} color="var(--accent-emerald)" />
+              </div>
+
+              <div className="terminal-body">
+                <div className="terminal-line">
+                  <span className="terminal-prompt">ayush@sec-node:~$ </span>
+                  <span className="terminal-cmd">whoami</span>
+                  <div className="terminal-output">
+                    Ayush Choudhary — B.Tech CSE '27 @ JKLU
+                  </div>
+                </div>
+
+                <div className="terminal-line">
+                  <span className="terminal-prompt">ayush@sec-node:~$ </span>
+                  <span className="terminal-cmd">secops --credentials</span>
+                  <div className="terminal-output">
+                    <span className="terminal-gold">[★] EC-Council CEH v13 (Certified Ethical Hacker)</span>
+                    <br />
+                    <span>[+] Google Cybersecurity Professional</span>
+                    <br />
+                    <span>[+] Red Hat System Administration I (RH124)</span>
+                  </div>
+                </div>
+
+                <div className="terminal-line" style={{ marginBottom: 0 }}>
+                  <span className="terminal-prompt">ayush@sec-node:~$ </span>
+                  <span className="terminal-cmd">echo $STACK</span>
+                  <div className="terminal-output terminal-highlight">
+                    Python • React • FastAPI • C++ • Linux • Tableau • R • Nmap
                   </div>
                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeIn}
-              style={{ display: "flex", gap: "1.2rem", flexWrap: "wrap" }}
-            >
-              <a
-                href="/Ayush_Choudhary_Resume.pdf"
-                download
-                className="btn btn-primary"
-              >
-                <Download size={18} /> Get Resume
-              </a>
-              <a href="#projects" className="btn btn-secondary">
-                Explore Projects
-              </a>
-            </motion.div>
-
-            <motion.div
-              variants={fadeIn}
-              style={{ display: "flex", gap: "1.5rem", marginTop: "3.5rem" }}
-            >
-              <a
-                href="https://github.com/ayushchoudhary22"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                style={{ color: "var(--text-muted)" }}
-              >
-                <FaGithub size={26} />
-              </a>
-              <a
-                href="https://linkedin.com/in/ayush-choudhary-767080285/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                style={{ color: "var(--text-muted)" }}
-              >
-                <FaLinkedin size={26} />
-              </a>
-              <a
-                href="mailto:ayushchoudhary18481@gmail.com"
-                className="social-icon"
-                style={{ color: "var(--text-muted)" }}
-              >
-                <Mail size={26} />
-              </a>
-            </motion.div>
+            </div>
           </motion.div>
+        </div>
 
+        {/* Stats Strip */}
+        <div className="stats-strip">
+          <div className="stat-item">
+            <div className="stat-number">10<span>+</span></div>
+            <div className="stat-label">Projects Built & Deployed</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">CEH<span> v13</span></div>
+            <div className="stat-label">EC-Council Certified</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">2<span></span></div>
+            <div className="stat-label">Internships (Celebal & JNU)</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">98.8<span>%</span></div>
+            <div className="stat-label">Spam/Phishing Model Accuracy</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Certifications Section */}
+      <section id="credentials" className="section-container">
+        <div className="section-header">
+          <span className="section-tag">
+            <Award size={14} /> Professional Qualifications
+          </span>
+          <h2 className="section-title">Industry Certifications</h2>
+          <p className="section-subtitle">
+            Accredited credentials across Ethical Hacking, Linux Systems Administration, Cybersecurity, and Data Engineering.
+          </p>
+        </div>
+
+        <div className="certs-container">
+          {/* Hero Highlight Card: EC-Council CEH v13 */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
-            style={{
-              flex: "0.8",
-              display: "flex",
-              justifyContent: "center",
-              minWidth: "300px",
-            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="featured-ceh-card"
           >
-            <div
-              style={{ position: "relative", width: "330px", height: "330px" }}
-            >
-              <div className="avatar-glow"></div>
-              <div
-                className="glass-panel"
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflow: "hidden",
-                  padding: "8px",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                <img
-                  src="/profile.jpg"
-                  alt="Ayush Avatar"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
+            <div className="featured-ceh-badge">
+              <Sparkles size={14} /> Featured Credential • Active
+            </div>
+
+            <div className="ceh-grid">
+              <div>
+                <h3 className="ceh-title">Certified Ethical Hacker (CEH v13)</h3>
+                <div className="ceh-org">EC-Council — International Cybersecurity Standard</div>
+                <p className="ceh-desc">
+                  Demonstrates comprehensive practical knowledge of ethical hacking methodologies, vulnerability assessment, threat intelligence, network attack vectors, system hardening, and countermeasures against modern cyber threats.
+                </p>
+
+                <div className="ceh-domains-list">
+                  {[
+                    "Reconnaissance & Footprinting",
+                    "Network Scanning (Nmap/Wireshark)",
+                    "Vulnerability Assessment",
+                    "System Hacking & Malware Analysis",
+                    "Web App Attacks (SQLi / XSS)",
+                    "Cryptography & Defense",
+                  ].map((dom, i) => (
+                    <span key={i} className="ceh-domain-pill">
+                      ✓ {dom}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="ceh-meta-box">
+                <div className="ceh-meta-row">
+                  <span className="ceh-meta-label">Credential</span>
+                  <span className="ceh-meta-val">CEH v13</span>
+                </div>
+                <div className="ceh-meta-row">
+                  <span className="ceh-meta-label">Issuing Authority</span>
+                  <span className="ceh-meta-val">EC-Council</span>
+                </div>
+                <div className="ceh-meta-row">
+                  <span className="ceh-meta-label">Domain</span>
+                  <span className="ceh-meta-val">Offensive & Defensive Security</span>
+                </div>
+                <div className="ceh-meta-row" style={{ borderBottom: "none", paddingBottom: "0.4rem" }}>
+                  <span className="ceh-meta-label">Status</span>
+                  <span className="ceh-meta-val" style={{ color: "var(--accent-emerald)", display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                    <CheckCircle2 size={15} /> Verified Holder
+                  </span>
+                </div>
+
+                <div style={{ paddingTop: "0.8rem", borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+                  <a
+                    href="/certificates/ECC-CEH-ANSI-Certificate.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{
+                      width: "100%",
+                      justifyContent: "center",
+                      background: "var(--accent-amber)",
+                      borderColor: "var(--accent-amber)",
+                      color: "#070a12",
+                      fontWeight: 700,
+                      padding: "0.75rem 1.2rem",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    <Download size={16} /> Open Official CEH Certificate (PDF)
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
+
+          {/* Grid of Other Accreditations */}
+          <div className="certs-grid">
+            {certificationsData.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { delay: index * 0.08 } },
+                }}
+                className="glass-panel cert-card"
+              >
+                <div className="cert-card-header">
+                  <div className="cert-icon-wrapper">
+                    <Award size={22} />
+                  </div>
+                  <div>
+                    <h4 className="cert-title">{cert.title}</h4>
+                    <span style={{ fontSize: "0.8rem", color: "var(--accent-cyan)", fontFamily: "'Fira Code', monospace" }}>
+                      {cert.issuer}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="cert-desc">{cert.desc}</p>
+
+                <div className="project-tags" style={{ marginBottom: "1.2rem" }}>
+                  {cert.tags.map((tag, i) => (
+                    <span key={i} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-btn-link"
+                >
+                  {cert.isImage ? "View Certificate Image" : "Open PDF Credential"}
+                  <ExternalLink size={14} />
+                </a>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="section-container">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="section-title"
-        >
-          Technical Competence
-        </motion.h2>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="skill-bubbles-section"
-        >
-          <div className="skill-bubbles">
-            {skillBubblesData.map((skill, i) => (
-              <motion.div key={i} variants={fadeIn} className="skill-bubble">
-                <img src={skill.icon} alt={skill.name} />
-                <span>{skill.name}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="section-header">
+          <span className="section-tag">
+            <Terminal size={14} /> Technical Arsenal
+          </span>
+          <h2 className="section-title">Core Competencies</h2>
+          <p className="section-subtitle">
+            Languages, frameworks, security toolsets, and analytics engines used across development and security auditing.
+          </p>
+        </div>
 
+        {/* Tech Icon Badges */}
+        <div className="tech-icons-row">
+          {techPills.map((tech, i) => (
+            <div key={i} className="tech-icon-pill">
+              <img src={tech.icon} alt={tech.name} />
+              <span>{tech.name}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Categorized Skills */}
         <div className="skills-grid">
           {[
             {
-              title: "Web Technologies",
-              icon: <Code2 size={24} color="var(--primary)" />,
+              title: "Cybersecurity & SecOps",
+              icon: <Shield size={22} color="var(--accent-emerald)" />,
+              skills: [
+                "EC-Council CEH v13 Concepts",
+                "Vulnerability Scanning (Nmap, SQLMap)",
+                "Network Packet Analysis (Wireshark)",
+                "Linux OS Hardening (RHEL, Ubuntu, Kali)",
+                "Web Application Security (OWASP Top 10)",
+                "Email Security Basics (SPF, DKIM, DMARC)",
+              ],
+            },
+            {
+              title: "Full-Stack Web Development",
+              icon: <Code2 size={22} color="var(--accent-cyan)" />,
               skills: [
                 "React.js & Tailwind CSS",
-                "Node.js & Express.js",
-                "MongoDB (MERN)",
-                "JWT & Bcrypt Auth",
-                "Razorpay & Azure AD Integration",
+                "FastAPI & Python REST APIs",
+                "Node.js & Express.js Backends",
+                "MongoDB & MySQL Databases",
+                "JWT & PBKDF2 Password Hashing",
+                "Azure AD SSO & OAuth Integration",
               ],
             },
             {
-              title: "Programming Languages",
-              icon: <Terminal size={24} color="var(--secondary)" />,
+              title: "Data Science & Analytics",
+              icon: <BarChart3 size={22} color="var(--accent-amber)" />,
               skills: [
-                "Python (Scripting)",
-                "C / C++ Development",
-                "SQL (MySQL & Postgres)",
-                "Data Structures & Algorithms",
-              ],
-            },
-            {
-              title: "Cybersecurity & Tools",
-              icon: <Shield size={24} color="var(--primary)" />,
-              skills: [
-                "Linux (Ubuntu, Kali)",
-                "Vulnerability Testing",
-                "Wireshark & Nmap",
-                "Git & GitHub Version Control",
-                "Google Gemini API Integration",
-              ],
-            },
-            {
-              title: "Data & Machine Learning",
-              icon: <Database size={24} color="var(--secondary)" />,
-              skills: [
-                "Machine Learning (XGBoost, LightGBM, Scikit-Learn)",
-                "Deep Learning (PyTorch, TensorFlow, Keras)",
+                "Tableau (Interactive Dashboards)",
+                "R Programming for Data Analysis",
+                "Python (Pandas, NumPy, Scikit-Learn)",
+                "Time Series Forecasting (XGBoost, SARIMA)",
+                "Streamlit Dashboard Development",
                 "Explainable AI (SHAP)",
-                "Generative AI & LLMs (Gemini, RAG)",
-                "MLOps (Pytest, OOP, YAML Configs)",
-                "Data Engineering (Pandas, Streamlit)",
+              ],
+            },
+            {
+              title: "Systems & Programming Languages",
+              icon: <Terminal size={22} color="var(--accent-blue)" />,
+              skills: [
+                "Python (Scripting & Automation)",
+                "C / C++ (Data Structures & OOP)",
+                "Bash Scripting & CLI Tooling",
+                "Git & GitHub Version Control",
+                "Docker Basics & Containerization",
+                "Hardware Telemetry (PySerial / Arduino)",
               ],
             },
           ].map((cat, idx) => (
@@ -979,24 +757,20 @@ function App() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { delay: idx * 0.08 },
-                },
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0, transition: { delay: idx * 0.08 } },
               }}
-              className="glass-panel skill-category"
+              className="glass-panel skill-card"
             >
-              <div className="skill-category-title">
+              <div className="skill-card-top">
                 {cat.icon}
-                <h4>{cat.title}</h4>
+                <h4 className="skill-card-title">{cat.title}</h4>
               </div>
-              <ul className="skills-list">
+              <ul className="skill-items-list">
                 {cat.skills.map((skill, i) => (
-                  <li key={i} className="skill-item">
-                    <span className="skill-dot"></span>
-                    {skill}
+                  <li key={i} className="skill-item-row">
+                    <span className="skill-bullet" />
+                    <span>{skill}</span>
                   </li>
                 ))}
               </ul>
@@ -1005,111 +779,69 @@ function App() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Timeline Section */}
       <section id="experience" className="section-container">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="section-title"
-        >
-          Education & Experience
-        </motion.h2>
+        <div className="section-header">
+          <span className="section-tag">
+            <Globe size={14} /> Career Journey
+          </span>
+          <h2 className="section-title">Experience & Education</h2>
+          <p className="section-subtitle">
+            Hands-on internships and formal engineering education in Computer Science and Cybersecurity.
+          </p>
+        </div>
+
         <div className="timeline">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="timeline-item"
-          >
-            <div className="timeline-dot"></div>
-            <span className="timeline-date">May 2026 - July 2026</span>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="timeline-item">
+            <div className="timeline-dot" />
+            <span className="timeline-date">MAY 2026 — JULY 2026</span>
             <h3 className="timeline-title">Data Science Intern</h3>
-            <h4 className="timeline-company">
-              Celebal Technologies • Jaipur, Rajasthan (Remote)
-            </h4>
+            <h4 className="timeline-company">Celebal Technologies • Remote (Jaipur, Rajasthan)</h4>
             <ul className="timeline-bullets">
               <li>
-                Built <strong>RetailSense AI</strong> — an enterprise XGBoost demand forecasting pipeline on 5 years of sales data, reducing MAE by 41.4% and projecting <strong>$2.45M in annual ROI</strong> through supply chain optimization.
+                Built <strong>RetailSense AI</strong> — an enterprise XGBoost demand forecasting pipeline on 5 years of historical sales data, reducing MAE by 41.4% and projecting <strong>$2.45M in annual ROI</strong>.
               </li>
               <li>
-                Engineered Socio-Economic Clustering models using K-Means,
-                DBSCAN, and PCA, mapping 167 countries into development tiers with 97%+ accuracy.
+                Engineered country socio-economic clustering models with K-Means, DBSCAN, and PCA across 167 global regions.
               </li>
               <li>
-                Built Deep Learning architectures in PyTorch and TensorFlow,
-                comparing CNNs for CIFAR-10 image classification (68.99%
-                accuracy) and autoencoders for MNIST denoising.
+                Developed a 100% offline RAG Document Question-Answering chatbot in Streamlit using TF-IDF indexing and BM25 ranking for local, confidential querying.
               </li>
               <li>
-                Developed a 100% offline RAG Document Q&A chatbot using
-                Streamlit, leveraging custom TF-IDF parsing, BM25 retrieval, and
-                forward-decaying flow algorithms.
+                Maintained production-grade MLOps standards with Pytest unit testing and modular object-oriented Python architecture.
               </li>
             </ul>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="timeline-item"
-          >
-            <div
-              className="timeline-dot"
-              style={{ borderColor: "var(--secondary)" }}
-            ></div>
-            <span className="timeline-date">MAY 2025 - JUL 2025</span>
-            <h3 className="timeline-title">IoT Intern</h3>
-            <h4 className="timeline-company">
-              Jawaharlal Nehru University (JNU) • Delhi, India
-            </h4>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="timeline-item">
+            <div className="timeline-dot" style={{ borderColor: "var(--accent-cyan)" }} />
+            <span className="timeline-date">MAY 2025 — JULY 2025</span>
+            <h3 className="timeline-title">IoT & Systems Intern</h3>
+            <h4 className="timeline-company">Jawaharlal Nehru University (JNU) • Delhi, India</h4>
             <ul className="timeline-bullets">
               <li>
-                Designed and developed IoT automation projects, including smart
-                water supply and soil absorption networks.
+                Designed hardware-to-cloud IoT automation setups, recording sensor telemetry streams for smart irrigation and environmental metrics.
               </li>
               <li>
-                Integrated hardware components using Arduino, serial decoders,
-                and cloud databases for real-time sensor updates.
+                Created automated Python scripts using PySerial to read edge sensor logs over serial ports and filter background noise.
               </li>
               <li>
-                Analyzed sensor data pipelines to boost automated water valve
-                responsiveness and system reliability.
-              </li>
-              <li>
-                Wrote Python bridging scripts to automate instant hardware
-                status warnings via WhatsApp notifications.
+                Integrated alert triggers and cooldown protocols to detect offline devices and dispatch instant notifications.
               </li>
             </ul>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="timeline-item"
-          >
-            <div className="timeline-dot"></div>
-            <span className="timeline-date">2023 - 2027</span>
-            <h3 className="timeline-title">
-              B.Tech in Computer Science Engineering (Cybersecurity)
-            </h3>
-            <h4 className="timeline-company">
-              JK Lakshmipat University • Jaipur, Rajasthan
-            </h4>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="timeline-item">
+            <div className="timeline-dot" style={{ borderColor: "var(--accent-amber)" }} />
+            <span className="timeline-date">2023 — 2027</span>
+            <h3 className="timeline-title">B.Tech in Computer Science Engineering</h3>
+            <h4 className="timeline-company">JK Lakshmipat University • Jaipur, Rajasthan</h4>
             <ul className="timeline-bullets">
               <li>
-                Core studies: Data Structures & Algorithms, Cryptography,
-                Database Management Systems, Computer Networks.
+                Core subjects: Data Structures & Algorithms, Computer Networks, Operating Systems, Database Management Systems, and Cryptography.
               </li>
               <li>
-                Applied hands-on labs in Linux administration, ethical hacking
-                modules, and secure web application development.
+                Hands-on labs in Linux administration (RHEL), network vulnerability auditing, and full-stack software development.
               </li>
             </ul>
           </motion.div>
@@ -1118,17 +850,17 @@ function App() {
 
       {/* Projects Section */}
       <section id="projects" className="section-container">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="section-title"
-        >
-          Academic & Personal Projects
-        </motion.h2>
+        <div className="section-header">
+          <span className="section-tag">
+            <Code2 size={14} /> Proven Work
+          </span>
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="section-subtitle">
+            A showcase of production software, security scanners, full-stack web applications, and machine learning pipelines.
+          </p>
+        </div>
 
-        {/* Filter Controls */}
+        {/* Filter Pills */}
         <div className="filter-container">
           {projectCategories.map((cat, i) => (
             <button
@@ -1144,29 +876,19 @@ function App() {
         {/* Projects Grid */}
         <motion.div layout className="projects-grid">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project) => (
               <motion.div
                 layout
                 key={project.title}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35 }}
                 className="glass-panel project-card"
               >
                 <div className="project-card-header">
-                  <div className="project-icon">{project.icon}</div>
-                  <span
-                    style={{
-                      fontSize: "0.8rem",
-                      color: "var(--secondary)",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.5px",
-                    }}
-                  >
-                    {project.category}
-                  </span>
+                  <div className="project-icon-box">{project.icon}</div>
+                  <span className="project-category-tag">{project.category}</span>
                 </div>
 
                 <h3 className="project-card-title">{project.title}</h3>
@@ -1183,27 +905,21 @@ function App() {
                   )}
                 </div>
 
-                <div className="project-links">
+                <div className="project-links-row">
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="project-link"
-                    style={{
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      padding: 0,
-                    }}
+                    className="project-btn-link"
                   >
-                    <Eye size={16} /> Details
+                    <Eye size={15} /> Details
                   </button>
                   {project.githubLink && (
                     <a
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-link"
+                      className="project-btn-link"
                     >
-                      <FaGithub size={16} /> Code
+                      <FaGithub size={15} /> Code
                     </a>
                   )}
                   {project.liveLink && (
@@ -1211,9 +927,10 @@ function App() {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-link"
+                      className="project-btn-link"
+                      style={{ color: "var(--accent-emerald)" }}
                     >
-                      <ExternalLink size={16} /> Live
+                      <ExternalLink size={15} /> Live Demo
                     </a>
                   )}
                 </div>
@@ -1226,152 +943,60 @@ function App() {
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div
-            className="modal-overlay"
-            onClick={() => setSelectedProject(null)}
-          >
+          <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
             <motion.div
-              className="glass-panel modal-content"
+              className="modal-content"
               onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
             >
-              <button
-                className="modal-close"
-                onClick={() => setSelectedProject(null)}
-              >
+              <button className="modal-close" onClick={() => setSelectedProject(null)}>
                 <X size={18} />
               </button>
 
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.8rem",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                <span
-                  className="project-icon"
-                  style={{ color: "var(--secondary)" }}
-                >
-                  {selectedProject.icon}
-                </span>
-                <span
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "var(--primary)",
-                    fontWeight: 600,
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {selectedProject.category}
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.6rem" }}>
+                <span className="project-category-tag">{selectedProject.category}</span>
               </div>
 
-              <h3
-                style={{
-                  fontSize: "2rem",
-                  marginBottom: "1.2rem",
-                  fontWeight: 800,
-                }}
-              >
+              <h3 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", color: "white" }}>
                 {selectedProject.title}
               </h3>
-              <p
-                style={{
-                  color: "var(--text-main)",
-                  fontSize: "1.05rem",
-                  lineHeight: "1.6",
-                  marginBottom: "1.5rem",
-                }}
-              >
+
+              <p style={{ color: "var(--text-secondary)", fontSize: "1.02rem", lineHeight: "1.6", marginBottom: "1.5rem" }}>
                 {selectedProject.longDesc}
               </p>
 
-              <h4
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: 700,
-                  marginBottom: "0.8rem",
-                  color: "white",
-                }}
-              >
-                Key Implementations & Features
+              <h4 style={{ fontSize: "1.1rem", fontWeight: 700, color: "white", marginBottom: "0.8rem" }}>
+                Key Technical Highlights
               </h4>
-              <ul className="timeline-bullets" style={{ marginBottom: "2rem" }}>
+              <ul className="timeline-bullets" style={{ marginBottom: "1.8rem" }}>
                 {selectedProject.achievements.map((ach, i) => (
-                  <li key={i} style={{ fontSize: "0.95rem" }}>
-                    {ach}
-                  </li>
+                  <li key={i}>{ach}</li>
                 ))}
               </ul>
 
-              <h4
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: 700,
-                  marginBottom: "0.8rem",
-                  color: "white",
-                }}
-              >
+              <h4 style={{ fontSize: "1.1rem", fontWeight: 700, color: "white", marginBottom: "0.8rem" }}>
                 Technologies Used
               </h4>
               <div className="project-tags" style={{ marginBottom: "2rem" }}>
                 {selectedProject.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="tag"
-                    style={{
-                      borderColor: "rgba(69, 243, 255, 0.15)",
-                      color: "var(--primary)",
-                    }}
-                  >
+                  <span key={i} className="tag" style={{ borderColor: "rgba(16, 185, 129, 0.3)", color: "var(--accent-emerald)" }}>
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  gap: "1.5rem",
-                  borderTop: "1px solid rgba(255, 255, 255, 0.08)",
-                  paddingTop: "1.5rem",
-                }}
-              >
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "1.5rem" }}>
                 {selectedProject.githubLink && (
-                  <a
-                    href={selectedProject.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{ padding: "0.6rem 1.4rem" }}
-                  >
-                    <FaGithub size={18} /> View Source Code
+                  <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: "0.6rem 1.3rem" }}>
+                    <FaGithub size={16} /> View Source Code
                   </a>
                 )}
                 {selectedProject.liveLink && (
-                  <a
-                    href={selectedProject.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-secondary"
-                    style={{ padding: "0.6rem 1.4rem" }}
-                  >
-                    <ExternalLink size={18} /> Launch Live Site
+                  <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: "0.6rem 1.3rem" }}>
+                    <ExternalLink size={16} /> Launch Live Demo
                   </a>
-                )}
-                {!selectedProject.githubLink && !selectedProject.liveLink && (
-                  <span
-                    style={{
-                      color: "var(--text-muted)",
-                      fontSize: "0.9rem",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    Corporate/Academic environment restricted access. Files
-                    details can be requested.
-                  </span>
                 )}
               </div>
             </motion.div>
@@ -1379,195 +1004,77 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Certifications Section */}
-      <section id="certificates" className="section-container">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="section-title"
-        >
-          Academic Certifications
-        </motion.h2>
-        <div className="certs-grid">
-          {certificationsData.map((cert, index) => (
-            <motion.div
-              key={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: { delay: index * 0.08 },
-                },
-              }}
-              className="glass-panel cert-card"
-              style={{ padding: "2rem" }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                  marginBottom: "1.2rem",
-                }}
-              >
-                <div
-                  style={{
-                    padding: "0.6rem",
-                    background: "rgba(255, 42, 112, 0.05)",
-                    borderRadius: "10px",
-                    color: "var(--secondary)",
-                    border: "1px solid rgba(255, 42, 112, 0.1)",
-                  }}
-                >
-                  <Award size={26} />
-                </div>
-                <h3 className="cert-title">{cert.title}</h3>
-              </div>
-              <p
-                style={{
-                  color: "var(--text-muted)",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                  flexGrow: 1,
-                  marginBottom: "1.8rem",
-                }}
-              >
-                {cert.desc}
-              </p>
-              <div>
-                <div
-                  className="project-tags"
-                  style={{ marginBottom: "1.2rem" }}
-                >
-                  {cert.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="tag"
-                      style={{
-                        borderColor: "rgba(255, 42, 112, 0.15)",
-                        color: "var(--secondary)",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                  style={{
-                    fontWeight: 600,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
-                  }}
-                >
-                  {cert.isImage ? "View Certificate" : "Open PDF Credential"}{" "}
-                  <ExternalLink size={14} />
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* Contact Section */}
       <section id="contact" className="section-container">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          className="section-title"
-        >
-          Get In Touch
-        </motion.h2>
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-          style={{
-            textAlign: "center",
-            color: "var(--text-muted)",
-            fontSize: "1.1rem",
-            maxWidth: "600px",
-            margin: "0 auto",
-            lineHeight: "1.7",
-          }}
-        >
-          Open for software development internships, cybersecurity audits, and
-          academic coding projects. Let's build something great together.
-        </motion.p>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="contact-grid"
-        >
-          <motion.div variants={fadeIn} className="contact-card">
-            <div className="contact-card-icon">
-              <Mail size={24} color="var(--primary)" />
+        <div className="section-header">
+          <span className="section-tag">
+            <Mail size={14} /> Direct Connection
+          </span>
+          <h2 className="section-title">Get In Touch</h2>
+          <p className="section-subtitle">
+            Open for software engineering roles, cybersecurity internships, and technical development projects.
+          </p>
+        </div>
+
+        <div className="contact-grid">
+          <div className="glass-panel contact-card">
+            <div className="contact-icon-box">
+              <Mail size={22} />
             </div>
-            <span className="contact-card-label">Email</span>
-            <a href="mailto:ayushchoudhary18481@gmail.com">
+            <div className="contact-label">Email Address</div>
+            <a href="mailto:ayushchoudhary18481@gmail.com" className="contact-value">
               ayushchoudhary18481@gmail.com
             </a>
-          </motion.div>
-          <motion.div variants={fadeIn} className="contact-card">
-            <div className="contact-card-icon">
-              <FaGithub size={24} color="var(--primary)" />
+            <button onClick={handleCopyEmail} className="copy-btn">
+              {copiedEmail ? <Check size={14} color="var(--accent-emerald)" /> : <Copy size={14} />}
+              {copiedEmail ? "Copied to Clipboard!" : "Copy Email"}
+            </button>
+          </div>
+
+          <div className="glass-panel contact-card">
+            <div className="contact-icon-box">
+              <FaLinkedin size={22} />
             </div>
-            <span className="contact-card-label">GitHub</span>
-            <a
-              href="https://github.com/ayushchoudhary22"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github.com/ayushchoudhary22
-            </a>
-          </motion.div>
-          <motion.div variants={fadeIn} className="contact-card">
-            <div className="contact-card-icon">
-              <FaLinkedin size={24} color="var(--primary)" />
-            </div>
-            <span className="contact-card-label">LinkedIn</span>
+            <div className="contact-label">LinkedIn Profile</div>
             <a
               href="https://linkedin.com/in/ayush-choudhary-767080285/"
               target="_blank"
               rel="noopener noreferrer"
+              className="contact-value"
             >
               linkedin.com/in/ayush-choudhary
             </a>
-          </motion.div>
-        </motion.div>
+            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+              Let's connect professionally
+            </span>
+          </div>
+
+          <div className="glass-panel contact-card">
+            <div className="contact-icon-box">
+              <FaGithub size={22} />
+            </div>
+            <div className="contact-label">GitHub Repositories</div>
+            <a
+              href="https://github.com/ayushchoudhary22"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-value"
+            >
+              github.com/ayushchoudhary22
+            </a>
+            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+              Inspect live codebases & commits
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer
-        style={{
-          padding: "3rem 2rem",
-          textAlign: "center",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-          background: "rgba(5, 5, 8, 0.4)",
-        }}
-      >
-        <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>
-          © {new Date().getFullYear()} Ayush Choudhary. Built with React, CSS
-          variables & Framer Motion.
+      <footer>
+        <p>
+          © {new Date().getFullYear()} Ayush Choudhary. Crafted with React & modern CSS.
         </p>
       </footer>
     </div>
   );
 }
-
-export default App;
